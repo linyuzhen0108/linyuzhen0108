@@ -1,0 +1,280 @@
+/*基本樣式*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", sans-serif;
+    background: #f7f9fc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 2rem;
+    padding-top: 56px;
+    /* 預留 navbar 空間 */
+}
+
+
+/*導覽列*/
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #f7f9fc;
+    padding: 0.5rem 1rem;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #f7f9fc;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: #000;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 4px;
+    left: 0;
+    background-color: #1abc9c;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link:hover {
+    color: #1abc9c;
+}
+
+
+/* 下拉選單 */
+
+.nav-item.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f7f9fc;
+    list-style: none;
+    padding: 0.5rem 0;
+    min-width: 160px;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 2000;
+}
+
+.nav-item.dropdown:hover>.dropdown-menu,
+.nav-item.dropdown:focus-within>.dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* 漢堡選單 */
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.nav-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #000;
+    border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        top: 60px;
+        /* navbar 高度 + 一點間距 */
+        left: 0;
+        right: 0;
+        background-color: #f7f9fc;
+        flex-direction: column;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+    .nav-menu.active {
+        max-height: 500px;
+        /* 足夠顯示所有選單 */
+    }
+    .nav-item {
+        padding: 0.5rem 1rem;
+    }
+    .nav-toggle {
+        display: flex;
+        margin-left: auto;
+    }
+    /* 手機版 dropdown 點擊才展開 */
+    .dropdown-menu {
+        display: none;
+        position: static;
+        box-shadow: none;
+    }
+    .nav-item.open>.dropdown-menu {
+        display: block;
+    }
+}
+
+
+/*左右箭頭*/
+
+.arrow-left,
+.arrow-right {
+    position: fixed;
+    bottom: 50px;
+    width: 40px;
+    cursor: pointer;
+    z-index: 999;
+    animation: bounce 1.5s infinite ease-in-out;
+}
+
+.arrow-left {
+    left: 50px;
+}
+
+.arrow-right {
+    right: 50px;
+}
+
+@keyframes bounce {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@media (max-width: 768px) {
+    .arrow-left,
+    .arrow-right {
+        width: 30px;
+        bottom: 30px;
+    }
+    .arrow-left {
+        left: 20px;
+    }
+    .arrow-right {
+        right: 20px;
+    }
+}
+
+
+/* travel.css */
+
+.interest-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.interest-text {
+    max-width: 400px;
+    text-align: left;
+}
+
+.interest-text h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.interest-text p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #333;
+}
+
+.carousel {
+    position: relative;
+    width: 540px;
+    height: 380px;
+    margin: 2rem auto;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slides img {
+    width: 540px;
+    height: 380px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    font-size: 2rem;
+    padding: 0 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    user-select: none;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
