@@ -2,9 +2,16 @@ const slides = document.querySelector('.slides');
 const images = document.querySelectorAll('.slides img');
 const prevBtn = document.querySelector('.prev');
 const nextBtn = document.querySelector('.next');
+const navToggle = document.getElementById('nav-toggle');
+const navMenu = document.getElementById('nav-menu');
 
 let currentIndex = 0;
 const total = images.length;
+
+navToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    navToggle.classList.toggle('active');
+});
 
 function updateSlide() {
     const firstImage = images[0];
