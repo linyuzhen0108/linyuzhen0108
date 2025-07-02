@@ -379,6 +379,13 @@ body {
 /*專題頁手機版*/
 
 @media (max-width: 768px) {
+    .project-item img,
+    .project-poster {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        margin-bottom: 1rem;
+    }
     .project-item:first-of-type,
     .project-item:nth-child(2) {
         flex-direction: column;
