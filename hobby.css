@@ -278,3 +278,26 @@ body {
 .next {
     right: 10px;
 }
+
+.carousel-wrapper {
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel {
+    width: 100%;
+    position: relative;
+}
+
+.slides {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.slides img {
+    width: 100%;
+    height: auto;
+    flex-shrink: 0;
+    object-fit: cover; /* 可視需求使用 */
+}
